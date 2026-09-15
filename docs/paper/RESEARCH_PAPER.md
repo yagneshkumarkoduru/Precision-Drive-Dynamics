@@ -1,8 +1,8 @@
 # Neural-Adaptive Super-Twisting Sliding Mode Control with Control Barrier Functions and Extended State Observers for Precision DC Drives
 
-**Yagnesh Kumar Koduru**  
-*Researcher, Esthien Labs*  
-*Email: yagneshkumar@esthien.com*
+**Koduru Yagnesh Kumar**  
+*Independent Researcher*  
+*Email: yagneshkumarkoduru@gmail.com*
 
 ---
 

@@ -122,7 +122,7 @@ class DisturbanceObserverISMC:
 def run_nonlinear_benchmark():
     print("=" * 80)
     print("NONLINEAR STRIBECK FRICTION, NDOB & INTEGRAL SLIDING MODE BENCHMARK")
-    print("Author: Yagnesh Kumar Koduru")
+    print("Author: Koduru Yagnesh Kumar")
     print("=" * 80)
 
     motor = NonlinearDCMotor()

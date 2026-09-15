@@ -1,7 +1,7 @@
 # Mathematical Derivations, Non-Linear Dynamics & Sliding Mode Proofs
 
 **Precision-Drive-Dynamics: High-Precision Electro-Mechanical Drive Systems**  
-*Esthien Labs Technical Report | Control Theory & Mechatronics Series*
+*Independent Research Technical Report | Control Theory & Mechatronics Series*
 
 ---
 

@@ -111,7 +111,7 @@ class DCMotorStateSpace:
 def run_modern_control_study():
     print("=" * 75)
     print("DC MOTOR MODERN STATE-SPACE & LQR CONTROL BENCHMARK")
-    print("Author: Yagnesh Kumar Koduru")
+    print("Author: Koduru Yagnesh Kumar")
     print("=" * 75)
 
     motor = DCMotorStateSpace()
