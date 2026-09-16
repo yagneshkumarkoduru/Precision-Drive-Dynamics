@@ -10,7 +10,7 @@
 [![Hardware](https://img.shields.io/badge/hardware-STM32%20%7C%20FreeRTOS%20%7C%20CAN%20Bus-red.svg)](docs/IMPLEMENTATION_VERSIONS.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> 📄 **Research Paper Manuscript:** Read the full IEEE Transactions on Industrial Electronics manuscript: [**`docs/paper/RESEARCH_PAPER.md`**](docs/paper/RESEARCH_PAPER.md) | [LaTeX Source](docs/paper/Precision_Drive_Dynamics_TIE.tex) with Theorem 1 (*Finite-Time Sliding Convergence*) and Theorem 2 (*CBF Safe Invariance*).  
+> 📄 **Research Paper Manuscript:** Read the full research manuscript draft (target venue: IEEE Transactions on Industrial Electronics): [**`docs/paper/RESEARCH_PAPER.md`**](docs/paper/RESEARCH_PAPER.md) | [LaTeX Source](docs/paper/Precision_Drive_Dynamics_TIE.tex) with Theorem 1 (*Finite-Time Sliding Convergence*) and Theorem 2 (*CBF Safe Invariance*).  
 > 📐 **Mathematical Derivations & Lyapunov Proofs:** Complete Moreno-Osorio quadratic Lyapunov candidate proofs, LESO error boundedness lemmas, and Stribeck models: [**`docs/NONLINEAR_DYNAMICS_AND_SMC_PROOFS.md`**](docs/NONLINEAR_DYNAMICS_AND_SMC_PROOFS.md).  
 > ⚙️ **Three Implementation Tiers:** Architecture comparison and firmware for V1, V2, and V3: [**`docs/IMPLEMENTATION_VERSIONS.md`**](docs/IMPLEMENTATION_VERSIONS.md).
 
@@ -146,13 +146,11 @@ python adaptive_cbf_super_twisting.py
 ## 6. Citation
 
 ```bibtex
-@article{koduru2026precision,
-  author    = {Koduru, Yagnesh Kumar},
-  title     = {Neural-Adaptive Super-Twisting Sliding Mode Control with Control Barrier Functions for High-Precision Motor Drives},
-  journal   = {IEEE Transactions on Industrial Electronics},
-  year      = {2026},
-  volume    = {73},
-  number    = {8},
-  pages     = {4521--4534}
+@misc{koduru2026precision,
+  author = {Koduru, Yagnesh Kumar},
+  title  = {Neural-Adaptive Super-Twisting Sliding Mode Control with Control Barrier Functions for High-Precision Motor Drives},
+  year   = {2026},
+  note   = {Research manuscript draft; not peer reviewed},
+  url    = {https://github.com/yagneshkumarkoduru/Precision-Drive-Dynamics}
 }
 ```

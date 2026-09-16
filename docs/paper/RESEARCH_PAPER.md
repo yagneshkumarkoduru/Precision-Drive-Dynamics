@@ -106,13 +106,11 @@ Benchmarking under sudden $0.45\text{ N}\cdot\text{m}$ step load impact at $t = 
 
 ## Citation
 ```bibtex
-@article{koduru2026motor,
-  author    = {Koduru, Yagnesh Kumar},
-  title     = {Neural-Adaptive Super-Twisting Sliding Mode Control with Control Barrier Functions and Extended State Observers for Precision DC Drives},
-  journal   = {IEEE Transactions on Industrial Electronics},
-  year      = {2026},
-  volume    = {73},
-  number    = {4},
-  pages     = {3120--3132}
+@misc{koduru2026motor,
+  author = {Koduru, Yagnesh Kumar},
+  title  = {Neural-Adaptive Super-Twisting Sliding Mode Control with Control Barrier Functions and Extended State Observers for Precision DC Drives},
+  year   = {2026},
+  note   = {Research manuscript draft; not peer reviewed},
+  url    = {https://github.com/yagneshkumarkoduru/Precision-Drive-Dynamics}
 }
 ```
