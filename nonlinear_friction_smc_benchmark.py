@@ -22,8 +22,8 @@ plt.rcParams['axes.grid'] = True
 plt.rcParams['grid.alpha'] = 0.35
 
 output_dir = 'pid_figures'
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
+# Directory creation happens at save time (see the figure helpers), not at
+# import: importing this module for tests must not write to the filesystem.
 
 
 class NonlinearDCMotor:
@@ -240,6 +240,7 @@ def run_nonlinear_benchmark():
     ax_u.set_ylabel('Control Input $v_a(t)$ (V)', fontweight='bold')
     ax_u.legend(loc='lower right', framealpha=0.95)
     plt.tight_layout()
+    os.makedirs(output_dir, exist_ok=True)
     fig12.savefig(os.path.join(output_dir, 'fig12_stribeck_friction_tracking.png'), dpi=300)
     plt.close(fig12)
 

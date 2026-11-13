@@ -1,0 +1,489 @@
+{
+  "plant": {
+    "J": 0.0005,
+    "b": 5e-05,
+    "Kt": 0.05,
+    "Ke": 0.05,
+    "R": 1.0,
+    "L": 0.001,
+    "V_max": 48.0,
+    "I_max": 20.0
+  },
+  "gains": {
+    "pid": {
+      "kp": 2.0,
+      "ki": 10.0,
+      "kd": 0.05
+    },
+    "smc1": {
+      "k_sw": 15.0,
+      "phi": 0.5
+    },
+    "sta_eso": {
+      "k1": 800.0,
+      "k2": 1000.0,
+      "omega_o": 120.0
+    },
+    "adaptive": {
+      "gamma": 30000.0,
+      "k1_min": 800.0,
+      "k1_max": 1600.0
+    }
+  },
+  "protocol": {
+    "operating_points": [
+      {
+        "w_ref": 50.0,
+        "load_nm": 0.2
+      },
+      {
+        "w_ref": 50.0,
+        "load_nm": 0.45
+      },
+      {
+        "w_ref": 100.0,
+        "load_nm": 0.2
+      },
+      {
+        "w_ref": 100.0,
+        "load_nm": 0.45
+      },
+      {
+        "w_ref": 100.0,
+        "load_nm": 0.7
+      },
+      {
+        "w_ref": 150.0,
+        "load_nm": 0.45
+      },
+      {
+        "w_ref": 150.0,
+        "load_nm": 0.7
+      }
+    ],
+    "chattering_spectrum": "FFT of dV/dt over the final 1.0 s steady window, Hann window",
+    "note": "gains tuned once on the 100 rad/s, 0.45 N m reference point; reused everywhere"
+  },
+  "points": [
+    {
+      "operating_point": {
+        "w_ref": 50.0,
+        "load_nm": 0.2
+      },
+      "controllers": {
+        "pid": {
+          "sag_rad_s": 1.8750807611981912,
+          "recovery_time_s": 0.18350000000000022,
+          "settling_time_s": 0.432,
+          "overshoot_pct": 9.122154511302696,
+          "rms_tracking_error_rad_s": 1.1506669195515318,
+          "chattering_v_per_s": 101.12857452128623,
+          "chattering_transient_v_per_s": 3158.3534991669253,
+          "peak_voltage_v": 22.499543479114287,
+          "peak_current_a": 16.16390480296452,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 19.997454213345573
+        },
+        "smc1": {
+          "sag_rad_s": 0.2975744946588179,
+          "recovery_time_s": 0.0,
+          "settling_time_s": 0.03370000000000001,
+          "overshoot_pct": 1.0797199346439328,
+          "rms_tracking_error_rad_s": 0.11563993388551123,
+          "chattering_v_per_s": 119.77033902306474,
+          "chattering_transient_v_per_s": 445.0754547537666,
+          "peak_voltage_v": 17.437740270738406,
+          "peak_current_a": 15.042002098739271,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 20.066295200127136
+        },
+        "sta_eso": {
+          "sag_rad_s": 0.43455120222756705,
+          "recovery_time_s": 0.0,
+          "settling_time_s": 0.025999999999999995,
+          "overshoot_pct": 0.8055749819062896,
+          "rms_tracking_error_rad_s": 0.02696530446244258,
+          "chattering_v_per_s": 128.18959625426035,
+          "chattering_transient_v_per_s": 335.3398139443834,
+          "peak_voltage_v": 22.197053845505245,
+          "peak_current_a": 19.994928560337215,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 1827.1839893384279
+        },
+        "adaptive_sta_eso_cbf": {
+          "sag_rad_s": 0.4240668444193503,
+          "recovery_time_s": 0.0,
+          "settling_time_s": 0.02560000000000001,
+          "overshoot_pct": 1.442307702101246,
+          "rms_tracking_error_rad_s": 0.024807277620543584,
+          "chattering_v_per_s": 127.6737557269388,
+          "chattering_transient_v_per_s": 337.15549895863126,
+          "peak_voltage_v": 22.416491489549713,
+          "peak_current_a": 19.994929677293186,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 1873.7608961334029
+        }
+      }
+    },
+    {
+      "operating_point": {
+        "w_ref": 50.0,
+        "load_nm": 0.45
+      },
+      "controllers": {
+        "pid": {
+          "sag_rad_s": 4.076994746493185,
+          "recovery_time_s": 0.3772000000000002,
+          "settling_time_s": 0.432,
+          "overshoot_pct": 9.122154511302696,
+          "rms_tracking_error_rad_s": 1.4019134761166525,
+          "chattering_v_per_s": 227.53929267347172,
+          "chattering_transient_v_per_s": 3009.3284417835175,
+          "peak_voltage_v": 22.49704351192664,
+          "peak_current_a": 16.16390480296452,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 19.997451272674063
+        },
+        "smc1": {
+          "sag_rad_s": 0.7818655855343124,
+          "recovery_time_s": 0.0,
+          "settling_time_s": 0.03370000000000001,
+          "overshoot_pct": 1.0797199346439328,
+          "rms_tracking_error_rad_s": 0.31288757429421005,
+          "chattering_v_per_s": 269.8011627988161,
+          "chattering_transient_v_per_s": 760.342432791073,
+          "peak_voltage_v": 17.437740270738406,
+          "peak_current_a": 15.042002098739271,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 22.011756734584367
+        },
+        "sta_eso": {
+          "sag_rad_s": 1.5752173517955939,
+          "recovery_time_s": 0.0123000000000002,
+          "settling_time_s": 0.025999999999999995,
+          "overshoot_pct": 0.8055749819062896,
+          "rms_tracking_error_rad_s": 0.1318628402511379,
+          "chattering_v_per_s": 285.5015078885503,
+          "chattering_transient_v_per_s": 547.6566041122649,
+          "peak_voltage_v": 22.197053845505245,
+          "peak_current_a": 19.994928560337215,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 1654.739076783013
+        },
+        "adaptive_sta_eso_cbf": {
+          "sag_rad_s": 1.4362046313738972,
+          "recovery_time_s": 0.007100000000000106,
+          "settling_time_s": 0.02560000000000001,
+          "overshoot_pct": 1.442307702101246,
+          "rms_tracking_error_rad_s": 0.08072324828125294,
+          "chattering_v_per_s": 281.8828664863431,
+          "chattering_transient_v_per_s": 553.4301203404655,
+          "peak_voltage_v": 22.416491489549713,
+          "peak_current_a": 19.994929677293186,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 1594.1528582049789
+        }
+      }
+    },
+    {
+      "operating_point": {
+        "w_ref": 100.0,
+        "load_nm": 0.2
+      },
+      "controllers": {
+        "pid": {
+          "sag_rad_s": 1.9194617809200736,
+          "recovery_time_s": 0.0,
+          "settling_time_s": 0.3723,
+          "overshoot_pct": 5.628473986877239,
+          "rms_tracking_error_rad_s": 1.4167079842416912,
+          "chattering_v_per_s": 101.12857452053797,
+          "chattering_transient_v_per_s": 3150.277066512627,
+          "peak_voltage_v": 25.00014702678957,
+          "peak_current_a": 19.99492753440328,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 19.99746151231308
+        },
+        "smc1": {
+          "sag_rad_s": 0.29757449465886054,
+          "recovery_time_s": 0.0,
+          "settling_time_s": 0.06640000000000001,
+          "overshoot_pct": 0.5411667787253975,
+          "rms_tracking_error_rad_s": 0.11563993388551268,
+          "chattering_v_per_s": 119.77033902306746,
+          "chattering_transient_v_per_s": 445.0754547538319,
+          "peak_voltage_v": 19.988267652667574,
+          "peak_current_a": 15.092004287482357,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 20.066295209379394
+        },
+        "sta_eso": {
+          "sag_rad_s": 0.4407144705202626,
+          "recovery_time_s": 0.0,
+          "settling_time_s": 0.0504,
+          "overshoot_pct": 0.3666460441526169,
+          "rms_tracking_error_rad_s": 0.027076326047276656,
+          "chattering_v_per_s": 128.1895961567745,
+          "chattering_transient_v_per_s": 321.58541242552076,
+          "peak_voltage_v": 24.687823694868165,
+          "peak_current_a": 19.99494122178102,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 1827.1839846664298
+        },
+        "adaptive_sta_eso_cbf": {
+          "sag_rad_s": 0.4211508253392111,
+          "recovery_time_s": 0.0,
+          "settling_time_s": 0.05020000000000002,
+          "overshoot_pct": 0.7010884120345082,
+          "rms_tracking_error_rad_s": 0.024740538872998236,
+          "chattering_v_per_s": 127.63068152953151,
+          "chattering_transient_v_per_s": 315.6582365960729,
+          "peak_voltage_v": 24.916661962535716,
+          "peak_current_a": 19.994942384875444,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 1870.5060870095745
+        }
+      }
+    },
+    {
+      "operating_point": {
+        "w_ref": 100.0,
+        "load_nm": 0.45
+      },
+      "controllers": {
+        "pid": {
+          "sag_rad_s": 4.121354577369999,
+          "recovery_time_s": 0.22750000000000004,
+          "settling_time_s": 0.3723,
+          "overshoot_pct": 5.628473986877239,
+          "rms_tracking_error_rad_s": 1.6268076426738927,
+          "chattering_v_per_s": 227.53929267270524,
+          "chattering_transient_v_per_s": 3001.7529219873213,
+          "peak_voltage_v": 24.997647059601924,
+          "peak_current_a": 19.99492753440328,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 19.997453608450115
+        },
+        "smc1": {
+          "sag_rad_s": 0.7818655855343337,
+          "recovery_time_s": 0.0,
+          "settling_time_s": 0.06640000000000001,
+          "overshoot_pct": 0.5411667787253975,
+          "rms_tracking_error_rad_s": 0.31288757429420827,
+          "chattering_v_per_s": 269.801162798814,
+          "chattering_transient_v_per_s": 760.3424327910981,
+          "peak_voltage_v": 19.988267652667574,
+          "peak_current_a": 15.092004287482357,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 22.0117567375468
+        },
+        "sta_eso": {
+          "sag_rad_s": 1.5791326276523279,
+          "recovery_time_s": 0.0,
+          "settling_time_s": 0.0504,
+          "overshoot_pct": 0.3666460441526169,
+          "rms_tracking_error_rad_s": 0.13201049106482907,
+          "chattering_v_per_s": 285.5015078884531,
+          "chattering_transient_v_per_s": 533.7563393983536,
+          "peak_voltage_v": 24.687823694868165,
+          "peak_current_a": 19.99494122178102,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 1654.7390771816556
+        },
+        "adaptive_sta_eso_cbf": {
+          "sag_rad_s": 1.4322216079658716,
+          "recovery_time_s": 0.0,
+          "settling_time_s": 0.05020000000000002,
+          "overshoot_pct": 0.7010884120345082,
+          "rms_tracking_error_rad_s": 0.08057638172422724,
+          "chattering_v_per_s": 281.7803905890461,
+          "chattering_transient_v_per_s": 534.4286011484403,
+          "peak_voltage_v": 24.916661962535716,
+          "peak_current_a": 19.994942384875444,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 1556.3340353236026
+        }
+      }
+    },
+    {
+      "operating_point": {
+        "w_ref": 100.0,
+        "load_nm": 0.7
+      },
+      "controllers": {
+        "pid": {
+          "sag_rad_s": 6.324253485442995,
+          "recovery_time_s": 0.3257000000000001,
+          "settling_time_s": 0.3723,
+          "overshoot_pct": 5.628473986877239,
+          "rms_tracking_error_rad_s": 1.9458475201192746,
+          "chattering_v_per_s": 353.9500108220758,
+          "chattering_transient_v_per_s": 2900.201901997943,
+          "peak_voltage_v": 24.99514709241428,
+          "peak_current_a": 19.99492753440328,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 19.997452035024068
+        },
+        "smc1": {
+          "sag_rad_s": 6.9924939726813164,
+          "recovery_time_s": NaN,
+          "settling_time_s": 0.06640000000000001,
+          "overshoot_pct": 0.5411667787253975,
+          "rms_tracking_error_rad_s": 3.0396880482329007,
+          "chattering_v_per_s": 1059.011883615355,
+          "chattering_transient_v_per_s": 1383.201056336948,
+          "peak_voltage_v": 19.988271040481767,
+          "peak_current_a": 15.097116250422532,
+          "dominant_hz": 180.0,
+          "spectral_centroid_hz": 238.92224621065705
+        },
+        "sta_eso": {
+          "sag_rad_s": 3.362275476640022,
+          "recovery_time_s": 0.017900000000000027,
+          "settling_time_s": 0.0504,
+          "overshoot_pct": 0.3666460441526169,
+          "rms_tracking_error_rad_s": 0.3222776732788165,
+          "chattering_v_per_s": 695.134770538338,
+          "chattering_transient_v_per_s": 960.3822667601765,
+          "peak_voltage_v": 24.968768007252233,
+          "peak_current_a": 19.999411349660875,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 1810.2128778473318
+        },
+        "adaptive_sta_eso_cbf": {
+          "sag_rad_s": 2.7165500386960417,
+          "recovery_time_s": 0.008300000000000196,
+          "settling_time_s": 0.05020000000000002,
+          "overshoot_pct": 0.7010884120345082,
+          "rms_tracking_error_rad_s": 0.1601442189048294,
+          "chattering_v_per_s": 484.6224086677496,
+          "chattering_transient_v_per_s": 1255.414486519124,
+          "peak_voltage_v": 24.989073917096036,
+          "peak_current_a": 19.999595582789915,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 1933.4807136458858
+        }
+      }
+    },
+    {
+      "operating_point": {
+        "w_ref": 150.0,
+        "load_nm": 0.45
+      },
+      "controllers": {
+        "pid": {
+          "sag_rad_s": 4.146564435111969,
+          "recovery_time_s": 0.13230000000000008,
+          "settling_time_s": 0.3289,
+          "overshoot_pct": 3.7277182277053575,
+          "rms_tracking_error_rad_s": 1.6359734599931008,
+          "chattering_v_per_s": 227.53929267227008,
+          "chattering_transient_v_per_s": 2994.2420872087987,
+          "peak_voltage_v": 27.49799007378412,
+          "peak_current_a": 19.994940311346635,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 19.99746002101114
+        },
+        "smc1": {
+          "sag_rad_s": 0.7818655855344332,
+          "recovery_time_s": 0.0,
+          "settling_time_s": 0.09910000000000002,
+          "overshoot_pct": 0.3600355003697283,
+          "rms_tracking_error_rad_s": 0.3136699042771855,
+          "chattering_v_per_s": 269.80116279881366,
+          "chattering_transient_v_per_s": 760.3424327911505,
+          "peak_voltage_v": 22.537917498188015,
+          "peak_current_a": 15.141999007422521,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 22.011756740902985
+        },
+        "sta_eso": {
+          "sag_rad_s": 1.5737069495334595,
+          "recovery_time_s": 0.0,
+          "settling_time_s": 0.07490000000000002,
+          "overshoot_pct": 0.24328212255964368,
+          "rms_tracking_error_rad_s": 0.1318036513829596,
+          "chattering_v_per_s": 285.50150788795304,
+          "chattering_transient_v_per_s": 540.6885072105696,
+          "peak_voltage_v": 27.19222734001452,
+          "peak_current_a": 19.994953950674446,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 1654.7390768600335
+        },
+        "adaptive_sta_eso_cbf": {
+          "sag_rad_s": 1.438124415173121,
+          "recovery_time_s": 0.0,
+          "settling_time_s": 0.07479999999999998,
+          "overshoot_pct": 0.468345223806125,
+          "rms_tracking_error_rad_s": 0.08073109550343015,
+          "chattering_v_per_s": 281.7483261928322,
+          "chattering_transient_v_per_s": 503.2345900889243,
+          "peak_voltage_v": 27.420489805029053,
+          "peak_current_a": 19.99495511084229,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 1515.0785607681512
+        }
+      }
+    },
+    {
+      "operating_point": {
+        "w_ref": 150.0,
+        "load_nm": 0.7
+      },
+      "controllers": {
+        "pid": {
+          "sag_rad_s": 6.349448114774447,
+          "recovery_time_s": 0.2290000000000001,
+          "settling_time_s": 0.3289,
+          "overshoot_pct": 3.7277182277053575,
+          "rms_tracking_error_rad_s": 1.953243053208615,
+          "chattering_v_per_s": 353.9500108216164,
+          "chattering_transient_v_per_s": 2891.5428986687552,
+          "peak_voltage_v": 27.495490106596474,
+          "peak_current_a": 19.994940311346635,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 19.99745551535892
+        },
+        "smc1": {
+          "sag_rad_s": 6.9924939726811886,
+          "recovery_time_s": NaN,
+          "settling_time_s": 0.09910000000000002,
+          "overshoot_pct": 0.3600355003697283,
+          "rms_tracking_error_rad_s": 3.0397686762763603,
+          "chattering_v_per_s": 1059.011883615315,
+          "chattering_transient_v_per_s": 1383.201056336985,
+          "peak_voltage_v": 22.538271040481767,
+          "peak_current_a": 15.147116250422531,
+          "dominant_hz": 180.0,
+          "spectral_centroid_hz": 238.9222462104176
+        },
+        "sta_eso": {
+          "sag_rad_s": 3.3575442522395917,
+          "recovery_time_s": 0.011300000000000088,
+          "settling_time_s": 0.07490000000000002,
+          "overshoot_pct": 0.24328212255964368,
+          "rms_tracking_error_rad_s": 0.3228183920168194,
+          "chattering_v_per_s": 696.7183822883293,
+          "chattering_transient_v_per_s": 969.6028383841501,
+          "peak_voltage_v": 27.47010938409018,
+          "peak_current_a": 19.999428769526403,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 1837.5449641296455
+        },
+        "adaptive_sta_eso_cbf": {
+          "sag_rad_s": 2.72111937143157,
+          "recovery_time_s": 0.0,
+          "settling_time_s": 0.07479999999999998,
+          "overshoot_pct": 0.468345223806125,
+          "rms_tracking_error_rad_s": 0.16147143414231988,
+          "chattering_v_per_s": 490.956297672849,
+          "chattering_transient_v_per_s": 1256.832916654383,
+          "peak_voltage_v": 27.488461710494814,
+          "peak_current_a": 19.99960957730918,
+          "dominant_hz": 20.0,
+          "spectral_centroid_hz": 1950.6488751885067
+        }
+      }
+    }
+  ]
+}

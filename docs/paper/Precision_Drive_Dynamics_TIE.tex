@@ -24,7 +24,7 @@ Email: yagneshkumarkoduru@gmail.com}
 \maketitle
 
 \begin{abstract}
-High-precision motion control systems and electromechanical robotic actuators require rapid disturbance rejection under severe load shocks while eliminating sliding mode control (SMC) chattering and enforcing strict inverter voltage/current saturation limits. Classical first-order SMC induces destructive high-frequency mechanical vibrations that overheat motor windings and excite unmodeled structural resonances. While the second-order Super-Twisting Algorithm (STA) generates continuous control action, conventional fixed-gain implementations demand conservative upper bounds on unknown disturbance derivatives, producing excessive steady-state gain and transient voltage saturation. In this paper, we develop a unified control architecture combining: (1) a High-Gain Linear Extended State Observer (LESO) for real-time lumped disturbance reconstruction without acceleration sensing; (2) an online Neural-Adaptive Super-Twisting Algorithm (NA-STA) that dynamically modulates sliding manifold gains, stiffening rapidly upon load impact and relaxing during quiescence; and (3) a Quadratic Program (QP) Control Barrier Function (CBF) safety filter guaranteeing forward invariance of electrical actuator constraints ($|u(t)| \le V_{\max}$). Rigorous Lyapunov stability proofs establish finite-time convergence of the second-order sliding manifold under time-varying disturbance derivatives. Numerical and benchmark validation under a 0.45\,N$\cdot$m step load impact demonstrates a 90.9\% reduction in dynamic speed sag ($14.8 \to 1.35$\,rad/s) compared to first-order SMC, a 95.4\% reduction in high-frequency control chattering variance, and guaranteed inverter bus limit preservation.
+High-precision motion control systems and electromechanical robotic actuators require rapid disturbance rejection under severe load shocks while eliminating sliding mode control (SMC) chattering and enforcing strict inverter voltage/current saturation limits. Classical first-order SMC induces destructive high-frequency mechanical vibrations that overheat motor windings and excite unmodeled structural resonances. While the second-order Super-Twisting Algorithm (STA) generates continuous control action, conventional fixed-gain implementations demand conservative upper bounds on unknown disturbance derivatives, producing excessive steady-state gain and transient voltage saturation. In this paper, we develop a unified control architecture combining: (1) a High-Gain Linear Extended State Observer (LESO) for real-time lumped disturbance reconstruction without acceleration sensing; (2) an online adaptive Super-Twisting Algorithm (STA) that dynamically modulates sliding manifold gains, stiffening rapidly upon load impact and relaxing during quiescence; and (3) a voltage-barrier safety filter guaranteeing forward invariance of electrical actuator constraints ($|u(t)| \le V_{\max}$). Rigorous Lyapunov stability proofs establish finite-time convergence of the second-order sliding manifold under time-varying disturbance derivatives. Benchmark validation on a shared two-state plant under a 0.45\,N$\cdot$m step load impact demonstrates a 95\% reduction in RMS tracking error and a 65\% reduction in speed sag against a tuned PID baseline, with every controller respecting the inverter voltage and drive current limits across a 20-sample Monte Carlo sweep.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -122,32 +122,35 @@ renders $\mathcal{C}_u$ forward invariant for all $t \ge 0$.
 
 \begin{table}[t]
 \centering
-\caption{Dynamic Disturbance Rejection Comparison ($0.45\,\text{N}\cdot\text{m}$ Shock)}
+\caption{Dynamic Disturbance Rejection Comparison on the Shared Harness ($0.45\,\text{N}\cdot\text{m}$ Shock)}
 \label{tab:motor_results}
 \begin{tabular}{lcccc}
 \toprule
-\textbf{Control Strategy} & \textbf{Speed Sag (rad/s)} & \textbf{Recovery Time (s)} & \textbf{Chattering Var.} & \textbf{Inverter Limits} \\
+\textbf{Control Strategy (tuned)} & \textbf{Speed Sag (rad/s)} & \textbf{RMS Error (rad/s)} & \textbf{Chattering (V/s)} & \textbf{Inverter Limits} \\
 \midrule
-Standard 1-SMC           & 14.80 & 0.38 & High (1.00) & Saturation spikes \\
-Fixed-Gain STA-2SMC      & 2.10  & 0.12 & Low (0.058) & Within bounds \\
-\textbf{NA-STA + CBF (Ours)} & \textbf{1.35} & \textbf{0.06} & \textbf{Minimal (0.046)} & \textbf{Strictly Preserved} \\
+Tuned PID                & 4.12 & 1.63 & 228 & Within bounds \\
+First-Order SMC          & 0.78 & 0.31 & 270 & Within bounds \\
+Super-Twisting + LESO    & 1.58 & 0.13 & 286 & Within bounds \\
+\textbf{Adaptive STA + CBF (Ours)} & \textbf{1.43} & \textbf{0.08} & 282 & \textbf{Guaranteed by barrier filter} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \subsection{Performance Highlights}
-As detailed in Table~\ref{tab:motor_results}:
+As detailed in Table~\ref{tab:motor_results} (all values produced by
+\texttt{drive\_benchmark.py}; Monte Carlo over $\pm20\%$ on $J, b, K_t, R$
+confirms the ordering):
 \begin{itemize}
-    \item \textbf{90.9\% Disturbance Sag Reduction}: Speed deviation drops from $14.80$\,rad/s down to $1.35$\,rad/s under sudden load torque impact.
-    \item \textbf{95.4\% Chattering Elimination}: Continuous control action eliminates acoustic noise and rotor ripple without sacrificing high-gain disturbance rejection.
-    \item \textbf{Dynamic Energy Conservation}: Gain relaxation during steady state prevents continuous high-frequency armature current dissipation.
+    \item \textbf{95\% RMS tracking error reduction} against the tuned PID baseline (0.08 vs 1.63 rad/s), with 65\% sag reduction (1.43 vs 4.12 rad/s).
+    \item \textbf{Sag trade-off reported as measured}: the first-order SMC with a small boundary layer achieves the smallest peak deviation (0.78 rad/s) at $\sim$4x the residual RMS error of the STA family.
+    \item \textbf{Deterministic electrical safety}: every controller respects $|V| \le 48$\,V and $|i| \le 20$\,A in every run, including the Monte Carlo sweep.
 \end{itemize}
 
 \section{Conclusion}
 This paper presented a Neural-Adaptive Super-Twisting 2-SMC framework integrated with an LESO disturbance observer and CBF safety filter for precision DC motor drives. The design provides rigorous finite-time stability, eliminates high-frequency chattering, and guarantees absolute preservation of electrical inverter constraints.
 
 \begin{thebibliography}{00}
-\bibitem{koduru2026motor} Koduru Yagnesh Kumar, ``Neural-Adaptive Super-Twisting Sliding Mode Control with Control Barrier Functions and Extended State Observers for Precision DC Drives,'' \emph{IEEE Trans. Ind. Electron.}, vol.~73, no.~4, pp.~3120--3132, 2026.
+\bibitem{koduru2026motor} Koduru Yagnesh Kumar, ``Neural-Adaptive Super-Twisting Sliding Mode Control with Control Barrier Functions and Extended State Observers for Precision DC Drives,'' unpublished manuscript (draft), 2026.
 \bibitem{levant1993sta} A. Levant, ``Sliding order and sliding accuracy in sliding mode control,'' \emph{Int. J. Control}, vol.~58, no.~6, pp.~1247--1263, 1993.
 \bibitem{han2009eso} J. Han, ``From PID to active disturbance rejection control,'' \emph{IEEE Trans. Ind. Electron.}, vol.~56, no.~3, pp.~900--906, 2009.
 \bibitem{moreno2012lyapunov} J. A. Moreno and M. Osorio, ``Strict Lyapunov functions for the super-twisting algorithm,'' \emph{IEEE Trans. Autom. Control}, vol.~57, no.~4, pp.~1035--1040, 2012.

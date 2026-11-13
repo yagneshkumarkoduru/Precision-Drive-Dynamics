@@ -19,10 +19,10 @@ where:
 * $\theta(t), \omega(t)$: Rotor angular position ($\text{rad}$) and velocity ($\text{rad/s}$)
 * $i_a(t)$: Armature current ($\text{A}$)
 * $V_a(t)$: Applied inverter bridge terminal voltage ($\text{V}$)
-* $J = 0.015\text{ kg}\cdot\text{m}^2$: Rotor and reflected load mass moment of inertia
-* $K_t = 0.45\text{ N}\cdot\text{m/A}$, $K_e = 0.45\text{ V}\cdot\text{s/rad}$: Electromechanical torque and back-EMF constants
-* $R_a(T)$: Armature winding resistance with temperature dependence ($R_0 = 1.25\,\Omega$)
-* $L_a = 8.0\text{ mH}$: Armature winding inductance
+* $J = 5.0\times10^{-4}\text{ kg}\cdot\text{m}^2$: Rotor and reflected load mass moment of inertia
+* $K_t = 0.05\text{ N}\cdot\text{m/A}$, $K_e = 0.05\text{ V}\cdot\text{s/rad}$: Electromechanical torque and back-EMF constants
+* $R_a = 1.0\,\Omega$: Armature winding resistance (thermal coupling $R_a(T) = R_0[1 + \alpha_{\text{Cu}}(T - T_0)]$ applies in the thermal study)
+* $L_a = 1.0\text{ mH}$: Armature winding inductance
 * $\tau_L(t)$: External physical load torque disturbance ($\text{N}\cdot\text{m}$)
 * $\tau_f(\omega)$: Non-linear friction torque
 
@@ -31,7 +31,7 @@ To capture pre-sliding displacement, static breakaway, and boundary-to-fluid tra
 
 $$\tau_f(\omega) = \left[ T_c + (T_s - T_c) \exp\left(-\left(\frac{\omega}{\omega_s}\right)^2\right) \right] \operatorname{sgn}(\omega) + b_{\text{visc}} \omega$$
 
-where $T_c = 0.25\text{ N}\cdot\text{m}$ is Coulomb friction, $T_s = 0.55\text{ N}\cdot\text{m}$ is static breakaway torque, $\omega_s = 6.0\text{ rad/s}$ is characteristic Stribeck velocity threshold, and $b_{\text{visc}} = 0.08\text{ N}\cdot\text{m}\cdot\text{s/rad}$ is viscous damping.
+where $T_c = 0.02\text{ N}\cdot\text{m}$ is Coulomb friction, $T_s = 0.05\text{ N}\cdot\text{m}$ is static breakaway torque, $\omega_s = 5.0\text{ rad/s}$ is characteristic Stribeck velocity threshold, and $b_{\text{visc}} = 5.0\times10^{-5}\text{ N}\cdot\text{m}\cdot\text{s/rad}$ is viscous damping (shared-harness Stribeck scenario values).
 
 ### 1.2 Thermal Resistance Coupling
 Armature copper winding resistance varies with operating temperature $T$:

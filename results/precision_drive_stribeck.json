@@ -1,0 +1,61 @@
+{
+  "scenario": {
+    "t_end": 3.0,
+    "dt": 0.0001,
+    "w_ref_value": 100.0,
+    "ref_step_at": 0.2,
+    "load_step_at": 1.2,
+    "load_step_nm": 0.45,
+    "load_ripple_nm": 0.15,
+    "load_ripple_hz": 20.0,
+    "stribeck_tc_nm": 0.02,
+    "stribeck_ts_nm": 0.05,
+    "stribeck_ws_rad_s": 5.0
+  },
+  "results": {
+    "pid": {
+      "sag_rad_s": 4.11645670913407,
+      "recovery_time_s": 0.22750000000000004,
+      "settling_time_s": 0.36710000000000004,
+      "overshoot_pct": 5.394508470848578,
+      "rms_tracking_error_rad_s": 1.5803343038315283,
+      "chattering_v_per_s": 227.53929267271812,
+      "chattering_transient_v_per_s": 2944.447683263416,
+      "peak_voltage_v": 24.997580553221848,
+      "peak_current_a": 19.995029486399776
+    },
+    "smc1": {
+      "sag_rad_s": 0.7969586779120164,
+      "recovery_time_s": 0.0,
+      "settling_time_s": 0.06840000000000002,
+      "overshoot_pct": 0.5073206453801617,
+      "rms_tracking_error_rad_s": 0.3340105492522872,
+      "chattering_v_per_s": 269.873547334573,
+      "chattering_transient_v_per_s": 745.517799200094,
+      "peak_voltage_v": 19.987933983751546,
+      "peak_current_a": 15.092137489671945
+    },
+    "sta_eso": {
+      "sag_rad_s": 1.5727438526792241,
+      "recovery_time_s": 0.0,
+      "settling_time_s": 0.05149999999999999,
+      "overshoot_pct": 0.36568037790274843,
+      "rms_tracking_error_rad_s": 0.13176634889655844,
+      "chattering_v_per_s": 285.5063483843614,
+      "chattering_transient_v_per_s": 488.8519964931848,
+      "peak_voltage_v": 24.700720914084265,
+      "peak_current_a": 19.995042939423946
+    },
+    "adaptive_sta_eso_cbf": {
+      "sag_rad_s": 1.439156005981971,
+      "recovery_time_s": 0.0,
+      "settling_time_s": 0.05130000000000001,
+      "overshoot_pct": 0.6989263198453983,
+      "rms_tracking_error_rad_s": 0.08079050168869044,
+      "chattering_v_per_s": 281.7572685787979,
+      "chattering_transient_v_per_s": 562.0135750447843,
+      "peak_voltage_v": 24.9249578950001,
+      "peak_current_a": 19.99504407913185
+    }
+  }
+}

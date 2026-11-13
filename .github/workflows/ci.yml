@@ -1,40 +1,26 @@
-name: CI Pipeline
+name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  build-and-test:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
+      - uses: actions/checkout@v4
 
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v7
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.11"
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install numpy scipy matplotlib pytest
 
-      - name: Bytecode Syntax Compilation Check
-        run: |
-          python -m compileall implementations/
-
-      - name: Run test suite
-        run: |
-          python -m pytest -q tests
-
-      - name: Run Tier 3 Neural-Adaptive STA Benchmark
-        run: |
-          python implementations/v3_neural_adaptive_cbf_sta/neural_adaptive_super_twisting.py
-
-      - name: Run Tier 3 CBF-QP Safety Filter Benchmark
-        run: |
-          python implementations/v3_neural_adaptive_cbf_sta/cbf_qp_safety_filter.py
+      - name: Run tests
+        run: python -m pytest tests/ -v

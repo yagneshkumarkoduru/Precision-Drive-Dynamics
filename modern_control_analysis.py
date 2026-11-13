@@ -35,8 +35,8 @@ plt.rcParams['axes.grid'] = True
 plt.rcParams['grid.alpha'] = 0.35
 
 output_dir = 'pid_figures'
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
+# Directory creation happens at save time (see the figure helpers), not at
+# import: importing this module for tests must not write to the filesystem.
 
 
 class DCMotorStateSpace:
@@ -234,6 +234,7 @@ def run_modern_control_study():
     ax_u.set_ylabel('Control Input (V)', fontweight='bold')
     ax_u.legend(loc='upper right', framealpha=0.95)
     plt.tight_layout()
+    os.makedirs(output_dir, exist_ok=True)
     fig10.savefig(os.path.join(output_dir, 'fig10_lqr_state_feedback_comparison.png'), dpi=300)
     plt.close(fig10)
 

@@ -17,8 +17,8 @@ This directory hosts three production-grade implementation tiers structured for 
 | **Disturbance Rejection** | Fixed-gain FOC + Overcurrent trip | High-Gain LESO ($\omega_o = 80\text{ rad/s}$) | Online Neural Gain Scheduling + LESO |
 | **Chattering Suppression** | Boundary-layer saturation | Super-Twisting continuous 2-SMC | Continuous NA-STA + Class-$\mathcal{K}$ CBF |
 | **Safety Assurance** | Hardware comparator trip | Inverter voltage saturation | Forward Invariant CBF QP Filter |
-| **Disturbance Sag Drop** | N/A (Baseline) | **56.59% reduction** | **90.9% reduction** ($14.8 \to 1.35\text{ rad/s}$) |
-| **Chattering Cut** | Baseline | **100% boundary cut** | **95.4% chattering variance drop** |
+| **Disturbance Sag Drop** | N/A (Baseline) | **21.6% attenuation** under shock load (NDOB-ISMC vs PID, Stribeck scenario) | **65% lower sag than tuned PID** (1.43 vs 4.12 rad/s, shared harness) |
+| **RMS Tracking Error** | Baseline | **5.2% reduction** vs PID (Stribeck scenario) | **95% lower than tuned PID** (0.08 vs 1.63 rad/s, shared harness) |
 
 ---
 

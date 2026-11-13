@@ -1,0 +1,46 @@
+{
+  "plant": {
+    "J": 0.0005,
+    "b": 5e-05,
+    "Kt": 0.05,
+    "Ke": 0.05,
+    "R": 1.0,
+    "L": 0.001,
+    "V_max": 48.0,
+    "I_max": 20.0
+  },
+  "scenario": {
+    "t_end": 2.5,
+    "dt": 0.0002,
+    "w_ref_value": 100.0,
+    "ref_step_at": 0.2,
+    "load_step_at": 1.2,
+    "load_step_nm": 0.45,
+    "load_ripple_nm": 0.15,
+    "load_ripple_hz": 20.0,
+    "stribeck_tc_nm": 0.0,
+    "stribeck_ts_nm": 0.0,
+    "stribeck_ws_rad_s": 5.0
+  },
+  "gains": {
+    "pid": {
+      "kp": 2.0,
+      "ki": 10.0,
+      "kd": 0.05
+    },
+    "smc1": {
+      "k_sw": 15.0,
+      "phi": 0.5
+    },
+    "sta_eso": {
+      "k1": 800.0,
+      "k2": 1000.0,
+      "omega_o": 120.0
+    },
+    "adaptive": {
+      "gamma": 30000.0,
+      "k1_min": 800.0,
+      "k1_max": 1600.0
+    }
+  }
+}

@@ -15,7 +15,7 @@ In this work, we present an integrated robust control framework:
 2. **Neural-Adaptive Super-Twisting 2-SMC (NA-STA)**: Dynamically scales sliding manifold gains, ramping up within milliseconds during transient torque impacts and relaxing during quiescence.
 3. **Control Barrier Function (CBF) Safety Filter**: Enforces strict forward invariance of inverter voltage constraints ($|u(t)| \le V_{\max}$).
 
-Rigorous Lyapunov analysis establishes finite-time convergence to the second-order sliding manifold. Experimental benchmark validation under a $0.45\text{ N}\cdot\text{m}$ step load impact proves a **$90.9\%$ reduction in dynamic speed sag** ($14.80 \to 1.35\text{ rad/s}$), a **$95.4\%$ reduction in control chattering variance**, and absolute protection against electrical bus saturation.
+Rigorous Lyapunov analysis establishes finite-time convergence to the second-order sliding manifold. Benchmark validation on the shared harness under a $0.45\text{ N}\cdot\text{m}$ step load impact shows the adaptive STA + voltage-barrier filter reducing RMS tracking error by **95%** and speed sag by **65%** against a tuned PID on the same plant, with every controller respecting the 48 V bus and 20 A drive limits in all runs including a 20-sample Monte Carlo sweep.
 
 ---
 
@@ -85,22 +85,38 @@ $$\dot{k}_1(t) = \begin{cases} \alpha_1 \sqrt{|s|}, & \text{if } |s| > \epsilon_
 
 ## 4. Benchmark Validation & Comparative Results
 
-Benchmarking under sudden $0.45\text{ N}\cdot\text{m}$ step load impact at $t = 1.2\text{ s}$:
+All numbers below are produced by the shared benchmark harness
+(`drive_benchmark.py`): one two-state plant (armature current + rotor speed),
+one scenario (100 rad/s reference step at 0.2 s; 0.45 N·m load step with
+0.15 N·m ripple at 1.2 s), one tuning procedure per controller class, and one
+metric definition set. Regenerate with `python drive_benchmark.py`;
+machine-readable results in `results/precision_drive_benchmark.json`.
 
-| Control Strategy | Speed Sag ($\text{rad/s}$) | Transient Recovery Time ($\text{s}$) | Chattering Variance | Inverter Saturation |
-| :--- | :---: | :---: | :---: | :---: |
-| **Standard 1-SMC** | 14.80 | 0.38 | 1.000 (Severe) | Destructive Spikes |
-| **Fixed-Gain STA-2SMC** | 2.10 | 0.12 | 0.058 (-94.2%) | Preserved |
-| **Neural-Adaptive CBF-STA (Ours)** | **1.35** | **0.06** | **0.046 (-95.4%)** | **Strictly Guaranteed** |
+| Control Strategy (tuned) | Speed Sag (rad/s) | Recovery (s) | RMS Tracking Error (rad/s) | Steady-state Chattering (V/s) | Inverter Saturation |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| Tuned PID | 4.12 | 0.228 | 1.63 | 228 | Respected |
+| First-order SMC | **0.78** | 0.000 | 0.31 | 270 | Respected |
+| Super-twisting + LESO | 1.58 | 0.000 | 0.13 | 286 | Respected |
+| Adaptive STA + voltage-barrier filter (Ours) | 1.43 | 0.000 | **0.08** | 282 | **Guaranteed by the barrier filter** |
 
-<p align="center">
-  <img src="../../pid_figures/fig_adaptive_cbf_super_twisting.png" alt="Neural-Adaptive CBF-STA Verification" width="85%" />
-</p>
+Monte Carlo (+/-20% on J, b, Kt, R; 20 samples, fixed seed): the adaptive
+STA + barrier records sag 1.43 +/- 0.24 rad/s and RMS error 0.08 +/- 0.01
+rad/s, against 4.28 +/- 0.44 and 1.63 +/- 0.09 for the tuned PID.
 
 ### Key Performance Findings:
-1. **$90.9\%$ Speed Sag Attenuation**: Dynamically suppresses step load impact with immediate recovery ($0.06\text{ s}$).
-2. **$95.4\%$ Chattering Reduction**: Produces smooth continuous armature voltage, eliminating audible acoustic squeal and motor heating.
-3. **Hardware Barrier Safety**: Actuator commands remain strictly within inverter bus limits ($\pm 48\text{ V}$).
+1. **Tracking quality**: the STA family reduces RMS tracking error by 92%
+   (fixed gain) to 95% (adaptive) against the tuned PID, and reduces sag by
+   62-65%. The adaptive variant is the best overall trade-off measured.
+2. **Sag trade-off**: the first-order SMC with a small boundary layer has the
+   smallest peak deviation (0.78 rad/s) but ~4x the residual RMS error of the
+   STA family; this is reported as measured rather than claiming a single
+   winner on every axis.
+3. **Chattering**: under equal tuning with the chattering-weighted objective,
+   steady-state chattering is comparable across controllers (228-286 V/s RMS
+   of dV/dt); the differences are in the transient window (see the results
+   JSON field `chattering_transient_v_per_s`).
+4. **Hardware barrier safety**: every controller in every run, including the
+   Monte Carlo sweep, respects |V| <= 48 V and |i| <= 20 A.
 
 ---
 
